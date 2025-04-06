@@ -1,5 +1,5 @@
 import random
-
+import time
 def display_race(hare_position, turtle_position):
     track = ['_'] * 70
     if hare_position > 70 or turtle_position > 70:
@@ -89,3 +89,4 @@ while hare_position < 70 and turtle_position < 70:
     elif hare_position >= 70:
         print("HARE WINS || YUCH!!!")
         break
+    time.sleep(0.5)
