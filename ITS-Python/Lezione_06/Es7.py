@@ -6,7 +6,6 @@ class User:
         self.email = email
 
     def describe_user(self):
-        # Assicuriamoci che venga restituita una stringa
         return f"User: {self.first_name} {self.last_name}, Username: {self.username}, Email: {self.email}"
 
     def greet_user(self):
