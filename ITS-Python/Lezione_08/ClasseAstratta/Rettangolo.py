@@ -11,5 +11,11 @@ class Rettangolo(FormaGeometrica):
         altezza = int(input("Inserire l'altezza del rettangolo: "))
         for i in range(altezza):
             for j in range(base):
-                print("*", end="")
+                if i == 0 or i == altezza -1:
+                    print("*", end="")
+                else:
+                    if j== 0 or j == base -1:
+                        print("*", end="")
+                    else:
+                        print(" ", end="")
             print()
