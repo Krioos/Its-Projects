@@ -1,0 +1,9 @@
+{
+    "Chiave_prova": 1,
+    "app_name": "Prova",
+    "server": {
+        "host": "prova_modificata",
+        "ip": 12353,
+        "port": 5000
+    }
+}
