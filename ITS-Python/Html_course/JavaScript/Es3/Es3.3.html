@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "time"></div>
+    <script>
+        let time = prompt("inserire un numero di secondi");
+        let ore = Math.floor(time / 3600);
+        let minuti = Math.floor((time % 3600) / 60);
+        let secondi = time % 60;
+
+        document.getElementById("time").innerHTML = `Ore: ${ore}, Minuti: ${minuti}, Secondi: ${secondi}`;
+    </script>
+</body>
+</html>

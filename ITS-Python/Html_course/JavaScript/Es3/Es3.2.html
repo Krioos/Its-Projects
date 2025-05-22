@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="age"></div>
+    <script>
+        let anno_corrente = 2025;
+        let anno_nascita = 2000;
+        let age = anno_corrente - anno_nascita;
+        let until_100 = 100 - age;
+        document.getElementById("age").innerHTML = 
+            `You are ${age} years old. You will turn 100 in ${until_100} years.`;
+    </script>
+</body>
+</html>
