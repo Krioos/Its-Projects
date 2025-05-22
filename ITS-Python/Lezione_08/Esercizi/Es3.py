@@ -24,8 +24,8 @@ class Member():
     def return_book(self, book):
         try:
             self.borrowed_books.remove(book)
-        except ValueError:
-            print("Libro non trovato in lista di libri presi in prestito")
+        except Exception:
+            raise Exception(f"Libro '{book.title}' non trovato in lista di libri presi in prestito")
             
     def __str__(self):
         books_titles = [book.title for book in self.borrowed_books]
@@ -46,23 +46,31 @@ class Library():
         self.books.append(book)
         Library.total_books += 1
     
-    def remove_book(self, member, book)-> None:
+    def remove_book(self, book)-> None:
         try:
             self.books.remove(book)
-            member.return_book(book)
             Library.total_books -= 1
-        except ValueError:
-            print(f"Error book {book} not in library")
+        except Exception:
+            raise Exception(f"Error book {book} not in library")
 
 
     def register_member(self, member)-> None:
         self.members.append(member)
 
     def lend_book(self, member, book)-> None:
-        if book in self.books:
-            member.borrow_book(book)
-        else:
-            print(f"Error no book called {book.title} in library")
+        if member in self.members:
+            try:
+                self.remove_book(book)
+                member.borrow_book(book)
+            except Exception:
+                raise Exception(f"No book called {book.title} in library")
+    def return_book(self, member, book)-> None:
+        try:
+            member.return_book(book)
+            self.add_book(book)
+        except Exception:
+            raise Exception("Operazione non eseguita")
+
 
     def __str__(self)-> str:
         book_titles = [book.title for book in self.books]
@@ -132,7 +140,7 @@ if __name__ == "__main__":
     print("-" * 30)
 
     # Simulate a return
-    my_library.remove_book(member1, book1)
+    my_library.return_book(member1, book1)
 
     print("\n--- Library State After a Book is Returned ---")
     print(my_library)
