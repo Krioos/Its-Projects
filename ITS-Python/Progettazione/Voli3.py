@@ -1,20 +1,41 @@
+from typing import Self
+
 class IntGEZ(int):
-    def __new__(cls, value: int) -> object:
-        if value < 0:
+    def __new__(cls, value: Self | int | float | str | bool) -> Self:
+        try:
+            int_value = int(value)
+        except ValueError:
+            raise ValueError("Il valore deve essere convertibile in un intero.")
+        if int_value < 0:
             raise ValueError("Il valore deve essere un intero maggiore o uguale a zero.")
-        return super().__new__(cls, value)
+        return super().__new__(cls, int_value)
 
 class IntGZ(int):
-    def __new__(cls, value: int) -> object:
-        if value <= 0:
+    def __new__(cls, value: Self | int | float | str | bool) -> Self:
+        try:
+            int_value = int(value)
+        except ValueError:
+            raise ValueError("Il valore deve essere convertibile in un intero.")
+        if int_value <= 0:
             raise ValueError("Il valore deve essere un intero maggiore di zero.")
-        return super().__new__(cls, value)
+        return super().__new__(cls, int_value)
 
 class IntG1900(int):
-    def __new__(cls, value: int) -> object:
-        if value < 1900:
+    def __new__(cls, value: Self | int | float | str | bool) -> Self:
+        try:
+            int_value = int(value)
+        except ValueError:
+            raise ValueError("Il valore deve essere convertibile in un intero.")
+        if int_value < 1900:
             raise ValueError("Il valore deve essere un intero maggiore o uguale a 1900.")
-        return super().__new__(cls, value)
+        return super().__new__(cls, int_value)
+
+
+def check_type(value, cls):
+    if not isinstance(value, cls):
+        return cls(value)
+    return value
+
 
 class Nazione:
     def __new__(cls, name: str) -> object:
@@ -46,14 +67,13 @@ class Nazione:
 
 
 class Citta:
-    def __new__(cls, name: str, abitanti: IntGEZ) -> object:
+    def __new__(cls, name: str, abitanti: int | IntGEZ) -> object:
         if not name:
             raise ValueError("Il nome della città non può essere vuoto.")
-        if not isinstance(abitanti, IntGEZ):
-            raise TypeError("Il numero di abitanti deve essere un intero maggiore o uguale a zero.")
+        abitanti = check_type(abitanti, IntGEZ)
         return super().__new__(cls)
 
-    def __init__(self, name: str, abitanti: IntGEZ) -> None:
+    def __init__(self, name: str, abitanti: int | IntGEZ) -> None:
         self._name = name
         self._abitanti = abitanti
 
@@ -72,10 +92,8 @@ class Citta:
         return self._abitanti
 
     @abitanti.setter
-    def abitanti(self, value: IntGEZ) -> None:
-        if not isinstance(value, IntGEZ):
-            raise TypeError("Il numero di abitanti deve essere un intero maggiore o uguale a zero.")
-        self._abitanti = value
+    def abitanti(self, value: int | IntGEZ) -> None:
+        self._abitanti = check_type(value, IntGEZ)
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, Citta) and self._name == other._name and self._abitanti == other._abitanti
@@ -85,6 +103,7 @@ class Citta:
 
     def __repr__(self) -> str:
         return f"Citta(name={self._name}, abitanti={self._abitanti})"
+
 
 class Aeroporto:
     def __new__(cls, codice: str, nome: str) -> object:
@@ -121,14 +140,13 @@ class Aeroporto:
 
 
 class Volo:
-    def __new__(cls, codice: str, durata_minuti: IntGZ) -> object:
+    def __new__(cls, codice: str, durata_minuti: int | IntGZ) -> object:
         if not codice:
             raise ValueError("Il codice del volo non può essere vuoto.")
-        if not isinstance(durata_minuti, IntGZ):
-            raise TypeError("La durata del volo deve essere un intero maggiore di zero.")
+        durata_minuti = check_type(durata_minuti, IntGZ)
         return super().__new__(cls)
 
-    def __init__(self, codice: str, durata_minuti: IntGZ) -> None:
+    def __init__(self, codice: str, durata_minuti: int | IntGZ) -> None:
         self._codice = codice
         self._durata_minuti = durata_minuti
 
@@ -141,10 +159,8 @@ class Volo:
         return self._durata_minuti
 
     @durata_minuti.setter
-    def durata_minuti(self, value: IntGZ) -> None:
-        if not isinstance(value, IntGZ):
-            raise TypeError("La durata del volo deve essere un intero maggiore di zero.")
-        self._durata_minuti = value
+    def durata_minuti(self, value: int | IntGZ) -> None:
+        self._durata_minuti = check_type(value, IntGZ)
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, Volo) and self._codice == other._codice
@@ -157,16 +173,15 @@ class Volo:
 
 
 class CompagniaAerea:
-    def __new__(cls, nome: str, anno_fondazione: IntG1900) -> object:
+    def __new__(cls, nome: str, anno_fondazione: int | IntG1900) -> object:
         if not nome:
             raise ValueError("Il nome della compagnia aerea non può essere vuoto.")
-        if not isinstance(anno_fondazione, IntG1900):
-            raise TypeError("L'anno di fondazione deve essere un intero maggiore o uguale a 1900.")
+        anno_fondazione = check_type(anno_fondazione, IntG1900)
         return super().__new__(cls)
 
-    def __init__(self, nome: str, anno_fondazione: IntG1900) -> None:
-        self._nome = nome #id mutabile
-        self._anno_fondazione = anno_fondazione # immutabile
+    def __init__(self, nome: str, anno_fondazione: int | IntG1900) -> None:
+        self._nome = nome
+        self._anno_fondazione = anno_fondazione
 
     @property
     def nome(self) -> str:
@@ -190,5 +205,3 @@ class CompagniaAerea:
 
     def __repr__(self) -> str:
         return f"CompagniaAerea(nome={self._nome}, anno_fondazione={self._anno_fondazione})"
-
-
