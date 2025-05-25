@@ -7,9 +7,6 @@ class IntGEZ(int):
     def __init__(self, value: int) -> None:
         self.value = value
 
-    def __repr__(self) -> str:
-        return f"IntGEZ({self.value})"
-
 class IntGZ(int):
     def __new__(cls, value: int) -> object:
         if value <= 0:
@@ -18,9 +15,6 @@ class IntGZ(int):
     
     def __init__(self, value: int) -> None:
         self.value = value
-
-    def __repr__(self) -> str:
-        return f"IntGZ({self.value})"
     
 class IntG1900(int):
     def __new__(cls, value: int) -> object:
@@ -30,9 +24,6 @@ class IntG1900(int):
     
     def __init__(self, value: int) -> None:
         self.value = value
-
-    def __repr__(self) -> str:
-        return f"IntG1900({self.value})"
 
 class Nazione():
     def __new__(cls, name: str)-> object:
