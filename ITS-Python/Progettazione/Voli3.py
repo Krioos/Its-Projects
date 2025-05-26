@@ -30,18 +30,15 @@ class IntG1900(int):
             raise ValueError("Il valore deve essere un intero maggiore o uguale a 1900.")
         return super().__new__(cls, int_value)
 
-
-
-
 class Nazione:
-    def __init__(self, nome: str) -> None:
-        self.nome = nome
+    def __init__(self, name: str) -> None:
+        self._name = name
 
     @property
-    def nome(self) -> str:
+    def name(self) -> str:
         return self._name
 
-    @nome.setter
+    @name.setter
     def name(self, value: str) -> None:
         if not value:
             raise ValueError("Il nome della nazione non può essere vuoto.")
@@ -58,15 +55,15 @@ class Nazione:
 
 
 class Citta:
-    def __init__(self, nome: str, abitanti: IntGEZ) -> None:
-        self.nome = nome
-        self.abitanti = abitanti
+    def __init__(self, name: str, abitanti: int | IntGEZ) -> None:
+        self._name = name
+        self._abitanti = abitanti
 
     @property
-    def nome(self) -> str:
+    def name(self) -> str:
         return self._name
 
-    @nome.setter
+    @name.setter
     def name(self, value: str) -> None:
         if not value:
             raise ValueError("Il nome della città non può essere vuoto.")
@@ -77,8 +74,8 @@ class Citta:
         return self._abitanti
 
     @abitanti.setter
-    def abitanti(self, value: IntGEZ) -> None:
-        self._abitanti = check_type(value, IntGEZ)
+    def abitanti(self, value: int | IntGEZ) -> None:
+        self._abitanti = value
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, Citta) and self._name == other._name and self._abitanti == other._abitanti
@@ -93,7 +90,8 @@ class Citta:
 class Aeroporto:
     def __init__(self, codice: str, nome: str) -> None:
         self._codice = codice
-        self.nome = nome
+        self._nome = nome
+
     @property
     def codice(self) -> str:
         return self._codice
@@ -121,7 +119,7 @@ class Aeroporto:
 class Volo:
     def __init__(self, codice: str, durata_minuti: int | IntGZ) -> None:
         self._codice = codice
-        self.durata_minuti = durata_minuti
+        self._durata_minuti = durata_minuti
 
     @property
     def codice(self) -> str:
@@ -133,7 +131,7 @@ class Volo:
 
     @durata_minuti.setter
     def durata_minuti(self, value: int | IntGZ) -> None:
-        self._durata_minuti = check_type(value, IntGZ)
+        self._durata_minuti = value
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, Volo) and self._codice == other._codice
@@ -147,7 +145,7 @@ class Volo:
 
 class CompagniaAerea:
     def __init__(self, nome: str, anno_fondazione: int | IntG1900) -> None:
-        self.nome = nome
+        self._nome = nome
         self._anno_fondazione = anno_fondazione
 
     @property
