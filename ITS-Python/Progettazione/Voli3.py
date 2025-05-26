@@ -38,19 +38,14 @@ def check_type(value, cls):
 
 
 class Nazione:
-    def __new__(cls, name: str) -> object:
-        if not name:
-            raise ValueError("Il nome della nazione non può essere vuoto.")
-        return super().__new__(cls)
-    
-    def __init__(self, name: str) -> None:
-        self._name = name
+    def __init__(self, nome: str) -> None:
+        self.nome = nome
 
     @property
-    def name(self) -> str:
+    def nome(self) -> str:
         return self._name
 
-    @name.setter
+    @nome.setter
     def name(self, value: str) -> None:
         if not value:
             raise ValueError("Il nome della nazione non può essere vuoto.")
@@ -67,21 +62,15 @@ class Nazione:
 
 
 class Citta:
-    def __new__(cls, name: str, abitanti: IntGEZ) -> object:
-        if not name:
-            raise ValueError("Il nome della città non può essere vuoto.")
-        abitanti = check_type(abitanti, IntGEZ)
-        return super().__new__(cls)
-
-    def __init__(self, name: str, abitanti: IntGEZ) -> None:
-        self._name = name
-        self._abitanti = abitanti
+    def __init__(self, nome: str, abitanti: IntGEZ) -> None:
+        self.nome = nome
+        self.abitanti = abitanti
 
     @property
-    def name(self) -> str:
+    def nome(self) -> str:
         return self._name
 
-    @name.setter
+    @nome.setter
     def name(self, value: str) -> None:
         if not value:
             raise ValueError("Il nome della città non può essere vuoto.")
@@ -106,15 +95,9 @@ class Citta:
 
 
 class Aeroporto:
-    def __new__(cls, codice: str, nome: str) -> object:
-        if not codice or not nome:
-            raise ValueError("Il codice e il nome dell'aeroporto non possono essere vuoti.")
-        return super().__new__(cls)
-
     def __init__(self, codice: str, nome: str) -> None:
         self._codice = codice
-        self._nome = nome
-
+        self.nome = nome
     @property
     def codice(self) -> str:
         return self._codice
@@ -140,15 +123,9 @@ class Aeroporto:
 
 
 class Volo:
-    def __new__(cls, codice: str, durata_minuti: IntGZ) -> object:
-        if not codice:
-            raise ValueError("Il codice del volo non può essere vuoto.")
-        durata_minuti = check_type(durata_minuti, IntGZ)
-        return super().__new__(cls)
-
     def __init__(self, codice: str, durata_minuti: int | IntGZ) -> None:
         self._codice = codice
-        self._durata_minuti = durata_minuti
+        self.durata_minuti = durata_minuti
 
     @property
     def codice(self) -> str:
@@ -173,14 +150,8 @@ class Volo:
 
 
 class CompagniaAerea:
-    def __new__(cls, nome: str, anno_fondazione: int | IntG1900) -> object:
-        if not nome:
-            raise ValueError("Il nome della compagnia aerea non può essere vuoto.")
-        anno_fondazione = check_type(anno_fondazione, IntG1900)
-        return super().__new__(cls)
-
     def __init__(self, nome: str, anno_fondazione: int | IntG1900) -> None:
-        self._nome = nome
+        self.nome = nome
         self._anno_fondazione = anno_fondazione
 
     @property
