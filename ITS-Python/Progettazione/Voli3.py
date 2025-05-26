@@ -67,13 +67,13 @@ class Nazione:
 
 
 class Citta:
-    def __new__(cls, name: str, abitanti: int | IntGEZ) -> object:
+    def __new__(cls, name: str, abitanti: IntGEZ) -> object:
         if not name:
             raise ValueError("Il nome della città non può essere vuoto.")
         abitanti = check_type(abitanti, IntGEZ)
         return super().__new__(cls)
 
-    def __init__(self, name: str, abitanti: int | IntGEZ) -> None:
+    def __init__(self, name: str, abitanti: IntGEZ) -> None:
         self._name = name
         self._abitanti = abitanti
 
@@ -92,7 +92,7 @@ class Citta:
         return self._abitanti
 
     @abitanti.setter
-    def abitanti(self, value: int | IntGEZ) -> None:
+    def abitanti(self, value: IntGEZ) -> None:
         self._abitanti = check_type(value, IntGEZ)
 
     def __eq__(self, other: object) -> bool:
@@ -140,7 +140,7 @@ class Aeroporto:
 
 
 class Volo:
-    def __new__(cls, codice: str, durata_minuti: int | IntGZ) -> object:
+    def __new__(cls, codice: str, durata_minuti: IntGZ) -> object:
         if not codice:
             raise ValueError("Il codice del volo non può essere vuoto.")
         durata_minuti = check_type(durata_minuti, IntGZ)

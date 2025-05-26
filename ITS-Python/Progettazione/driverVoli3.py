@@ -6,7 +6,6 @@ if __name__ == "__main__":
     aeroporto = Aeroporto("FCO", "Leonardo da Vinci")
     volo = Volo("AZ123", IntGZ(120))
     compagnia = CompagniaAerea("Alitalia", IntG1900(1946))
-
     print(nazione)
     print(citta)
     print(aeroporto)
