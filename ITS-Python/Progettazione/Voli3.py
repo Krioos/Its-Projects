@@ -40,8 +40,6 @@ class Nazione:
 
     @name.setter
     def name(self, value: str) -> None:
-        if not value:
-            raise ValueError("Il nome della nazione non può essere vuoto.")
         self._name = value
 
     def __eq__(self, other: object) -> bool:
@@ -65,8 +63,6 @@ class Citta:
 
     @name.setter
     def name(self, value: str) -> None:
-        if not value:
-            raise ValueError("Il nome della città non può essere vuoto.")
         self._name = value
 
     @property
@@ -154,8 +150,6 @@ class CompagniaAerea:
 
     @nome.setter
     def nome(self, value: str) -> None:
-        if not value:
-            raise ValueError("Il nome della compagnia aerea non può essere vuoto.")
         self._nome = value
 
     @property

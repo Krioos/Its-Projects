@@ -2,7 +2,7 @@ from Voli3 import IntGEZ, IntGZ, IntG1900, Nazione, Citta, Aeroporto, Volo, Comp
 #driver code
 if __name__ == "__main__":
     nazione = Nazione("Italia")
-    citta = Citta("Roma", 218000)
+    citta = Citta("Roma", IntGZ(218000))
     aeroporto = Aeroporto("FCO", "Leonardo da Vinci")
     volo = Volo("AZ123", IntGZ(120))
     compagnia = CompagniaAerea("Alitalia", IntG1900(1946))
