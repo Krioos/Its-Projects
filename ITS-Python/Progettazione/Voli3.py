@@ -31,10 +31,6 @@ class IntG1900(int):
         return super().__new__(cls, int_value)
 
 
-def check_type(value, cls):
-    if not isinstance(value, cls):
-        return cls(value)
-    return value
 
 
 class Nazione:
