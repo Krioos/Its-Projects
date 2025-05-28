@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "eq">
+    </div>
+    <script>
+        function eq(value1, value2){
+            return value1 === value2;
+        }
+        let value1 = "10";
+        let value2 = +10;
+        document.getElementById("eq").innerHTML = `${value1} = ${value2}?: ${eq(value1, value2)}`;
+    </script>
+    
+</body>
+</html>

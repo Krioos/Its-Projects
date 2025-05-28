@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giorno della settimana</title>
+</head>
+<body>
+    <div id="script"></div>
+
+    <script>
+        function range(value){
+            return value >= 1 && value <= 7;
+        }
+
+        function giorno(value){
+            if (range(value)) {
+                switch(value){
+                    case 1:
+                        return "Lunedì";
+                    case 2:
+                        return "Martedì";
+                    case 3:
+                        return "Mercoledì";
+                    case 4:
+                        return "Giovedì";
+                    case 5:
+                        return "Venerdì";
+                    case 6:
+                        return "Sabato";
+                    case 7:
+                        return "Domenica";
+                }
+            } else {
+                return "Non riesco a valutare il giorno";
+            }
+        }
+
+        // Puoi cambiare questo valore per testare altri giorni
+        const valore = +prompt("Inserisci il numero del giorno della settimana");
+        document.getElementById("script").innerHTML = giorno(valore);
+    </script>
+</body>
+</html>
