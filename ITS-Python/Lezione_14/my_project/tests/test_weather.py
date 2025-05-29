@@ -1,9 +1,5 @@
 from my_project.weather import check_weather
 import pytest
-#passed
-def test_check_weather1():
-    assert check_weather(21.00) == "hot", "temperature greather than 20 degrees \
-        must be considered as hot"
 
 @pytest.mark.parametrize("temperature, expected", [
     (21.00, "hot"),
