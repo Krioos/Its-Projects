@@ -13,9 +13,12 @@ def caesar_cypher_encrypt(s:str, key:int)-> str:
     return out_string
 
 def caesar_cypher_decript(s: str, key: int) -> str:
+    """
+    Funzione che permette di decifrare tramite cesare una stringa. Ignora i caratteri speciali
+    """
     out_string = ""
     key = key % 26
-    for character in s:
+    for character in s.lower():
         if "a" <= character <= "z":
             shifted = (ord(character) - ord('a') - key) % 26 + ord('a')
             out_string += chr(shifted)
