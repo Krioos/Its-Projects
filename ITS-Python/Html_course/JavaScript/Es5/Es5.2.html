@@ -15,22 +15,31 @@
 
         function giorno(value){
             if (range(value)) {
+                let giorno =  null
                 switch(value){
                     case 1:
-                        return "Lunedì";
+                        giorno = "Lunedì";
+                        break;
                     case 2:
-                        return "Martedì";
+                        giorno = "Martedì";
+                        break;
                     case 3:
-                        return "Mercoledì";
+                        giorno = "Mercoledì";
+                        break;
                     case 4:
-                        return "Giovedì";
+                        giorno = "Giovedì";
+                        break;
                     case 5:
-                        return "Venerdì";
+                        giorno = "Venerdì";
+                        break;
                     case 6:
-                        return "Sabato";
+                        giorno = "Sabato";
+                        break;
                     case 7:
-                        return "Domenica";
+                        giorno = "Domenica";
+                        break;
                 }
+                return giorno
             } else {
                 return "Non riesco a valutare il giorno";
             }
