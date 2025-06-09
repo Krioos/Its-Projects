@@ -76,21 +76,3 @@ class VideoRentalStore():
             print("Cliente non trovato")
             return []
 
-
-
-store = VideoRentalStore()
-store.add_movie("001", "Inception", "Nolan")
-store.add_movie("002", "Matrix", "Wachowski")
-
-store.register_customer("c01", "Alice")
-
-print(store.rent_movie("c01", "001"))  # None (successo)
-print(store.rent_movie("c01", "001"))  # Film già noleggiato
-print(store.rent_movie("c01", "002"))  # None (successo)
-
-print(store.get_rented_movies("c01"))  # ['Inception', 'Matrix']
-
-print(store.return_movie("c01", "001"))  # None (successo)
-print(store.return_movie("c01", "001"))  # Film non è stato noleggiato
-
-print(store.get_rented_movies("c01"))  # ['Matrix']
