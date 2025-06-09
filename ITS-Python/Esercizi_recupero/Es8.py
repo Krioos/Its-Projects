@@ -76,7 +76,8 @@ class VideoRentalStore():
             print("Cliente non trovato")
             return []
 
-# Example usage
+
+
 store = VideoRentalStore()
 store.add_movie("001", "Inception", "Nolan")
 store.add_movie("002", "Matrix", "Wachowski")

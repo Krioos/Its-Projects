@@ -29,7 +29,8 @@ def sum_secondary_diagonal(matrix: list[list[int]]) -> int:
         if i == limit:
             break
     return result
-# Esempio di utilizzo
+
+
 mat1 = [
 [1, 2, 3],
 [4, 5, 6],
