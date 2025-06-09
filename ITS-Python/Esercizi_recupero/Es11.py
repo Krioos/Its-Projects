@@ -2,7 +2,7 @@ def count_unique_words(stringa:str)-> dict[str, int]:
     """
     Conta le parole uniche in una stringa e restituisce un dizionario con le parole come chiavi e il loro conteggio come valori.
     """
-    tokens = stringa.split()
+    tokens: list[str] = stringa.split()
     conteggio = {}
     for token in tokens:
         token = token.lower().strip(",.!?;:")
