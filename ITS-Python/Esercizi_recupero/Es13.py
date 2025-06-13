@@ -13,7 +13,6 @@ def is_valid_ipv4(address: str) -> bool:
             return False
     return True
 
-# Esempio di utilizzo
 print(is_valid_ipv4("192.168.0.1")) # True
 print(is_valid_ipv4("255.255.255.255")) # True
 print(is_valid_ipv4("256.100.10.1")) # False (256 è fuori range)
