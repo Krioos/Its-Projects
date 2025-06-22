@@ -1,16 +1,22 @@
 import './App.css';
-import Componente1 from './Componente1';
-import Cloack from './Componente2';
-
+import Persona from './Persona';
+import Stampanumeri from './Stampanumeri';
+import Tabellina from './Tabellina';
 
 function App() {
   let nome = "Alessio";
+  const persona = {
+    nome: 'Luca',
+    cognome: 'Verdi',
+    eta: 25
+  };
+  const numero = 6;  
   return (
     <div className="App">
       <h1>Prima app con React {nome}</h1>
-      <Componente1>{nome}</Componente1>
-      <Cloack timezone="-6" country="USA"></Cloack>
-      <Cloack timezone="0" country="Italy"></Cloack>
+      <Persona persona={persona} />
+      <Tabellina numero={numero} />
+      <Stampanumeri></Stampanumeri>
     </div>
   );
 }
