@@ -1,0 +1,3 @@
+Da: alice@example.com, A: bob@example.com            
+Titolo: Prova            
+Messaggio: incontraci nel path che indicherò dopo
