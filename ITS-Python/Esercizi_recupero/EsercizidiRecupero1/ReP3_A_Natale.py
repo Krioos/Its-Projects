@@ -148,3 +148,5 @@ def main():
     if vincitore:
         proclamaVincitore(vincitore)
 
+if __name__ == "__main__":
+    main()
