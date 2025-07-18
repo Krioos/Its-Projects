@@ -1,8 +1,8 @@
 CREATE DOMAIN PosInteger AS INTEGER
-    check(value > 0);
+    CHECK(VALUE > 0);
 
 CREATE DOMAIN Valuta AS CHAR(3)
-    check(value ~ '^[A-Z]{3}$');
+    CHECK(VALUE ~ '^[A-Z]{3}$');
 
 CREATE TYPE Denaro AS
     (importo PosInteger, valuta Valuta);
@@ -15,8 +15,7 @@ CREATE TABLE Progetto(
 
 CREATE TABLE Dipartimento(
     nome VARCHAR PRIMARY KEY,
-    telefono VARCHAR,
-    direttore INTEGER
+    telefono VARCHAR
 );
 
 CREATE TABLE Impiegato(
@@ -30,6 +29,14 @@ CREATE TABLE Impiegato(
     FOREIGN KEY (dipartimento_afferenza) REFERENCES Dipartimento(nome)
 );
 
+CREATE TABLE Dirige(
+    direttore INTEGER,
+    dipartimento VARCHAR,
+    PRIMARY KEY (direttore, dipartimento),
+    FOREIGN KEY (direttore) REFERENCES Impiegato(id),
+    FOREIGN KEY (dipartimento) REFERENCES Dipartimento(nome)
+);
+
 CREATE TABLE Partecipa(
     id_impiegato INTEGER,
     nome_progetto VARCHAR,
@@ -37,7 +44,3 @@ CREATE TABLE Partecipa(
     FOREIGN KEY (id_impiegato) REFERENCES Impiegato(id),
     FOREIGN KEY (nome_progetto) REFERENCES Progetto(nome)
 );
-
-ALTER TABLE Dipartimento
-    ADD CONSTRAINT direttore AS FOREIGN KEY (direttore) REFERENCES Impiegato(id);
-
