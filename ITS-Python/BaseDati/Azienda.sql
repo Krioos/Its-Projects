@@ -31,7 +31,7 @@ CREATE TABLE Impiegato(
 
 CREATE TABLE Dirige(
     direttore INTEGER,
-    dipartimento VARCHAR,
+    dipartimento VARCHAR UNIQUE,
     PRIMARY KEY (direttore, dipartimento),
     FOREIGN KEY (direttore) REFERENCES Impiegato(id),
     FOREIGN KEY (dipartimento) REFERENCES Dipartimento(nome)
