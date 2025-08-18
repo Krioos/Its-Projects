@@ -1,0 +1,22 @@
+File di report di Gestione Voli
+
+
+{'posti disponibili': 100, 'economica': 70, 'business': 20, 'prima': 10}
+Prenotati 70 posti in classe economica
+{'posti disponibili': 30, 'economica': 0, 'business': 20, 'prima': 10}
+Prenotati 20 posti in classe business
+{'posti disponibili': 10, 'economica': 0, 'business': 0, 'prima': 10}
+Errore: classe richiesta non valida
+{'posti disponibili': 10, 'economica': 0, 'business': 0, 'prima': 10}
+Prenotati 10 posti in prima classe
+{'posti disponibili': 0, 'economica': 0, 'business': 0, 'prima': 0}
+Volo al completo
+{'posti disponibili': 0, 'economica': 0, 'business': 0, 'prima': 0}
+Il volo CHA456 prenotato, costo 20000
+Il volo CHA456 è al completo
+Prenotati 100 posti in classe economica
+Solo 40 posti restanti in economica
+Ecco tutti i voli della compagnia aerea ITA
+Volo commerciale COM123
+Volo commerciale COM456
+La compagnia ITA ha guadagnato 12180.0
