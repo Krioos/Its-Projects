@@ -10,15 +10,3 @@ def count_primes(number: int) -> int:
 
 
 print(count_primes(100))
-        
-
-
-
-
-def print_big(letter:str)-> None:
-    a = "  *  \n"+" **  \n"+"*****\n"+"*    *\n"+"*    *\n"
-    dict = {"a": a}
-    if letter.lower() in dict.keys():
-        print(dict[letter])
-
-print_big("a")
