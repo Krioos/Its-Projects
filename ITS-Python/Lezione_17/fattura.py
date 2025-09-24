@@ -12,7 +12,7 @@ class Fattura:
         else:
             self.__patient = patient
             self.__doctor = doctor
-            self.__fatture:int = self.getFatture()
+            self.getFatture()
             self.__salary:float = 0.00
 
     def getSalary(self)-> str:
@@ -22,6 +22,7 @@ class Fattura:
     
     def getFatture(self)-> int:
         result = len(self.__patient)
+        self.__fatture = result
         print(f"Il Dottore ha {result} fatture")
         return result
     
