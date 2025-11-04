@@ -1,7 +1,7 @@
 console.log("node");
 
 const arr1 = [1,2,3];
-arr2 =  [...arr1]; // così si fa la swallow cospy
+arr2 =  [...arr1]; // così si fa la swallow copy
 arr1.push(4);
 console.log(arr1);
 console.log(arr2);

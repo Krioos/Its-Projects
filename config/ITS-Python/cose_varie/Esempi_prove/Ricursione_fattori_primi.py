@@ -1,3 +1,6 @@
+from Cronometro import cronometro
+
+@cronometro
 def prime_factors(n: int, divisore: int = 2) -> list[int]:
     if n == 1:
         return []
