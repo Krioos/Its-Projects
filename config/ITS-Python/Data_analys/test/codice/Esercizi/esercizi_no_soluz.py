@@ -1,45 +1,58 @@
-# import pandas as pd
+import pandas as pd
 
 ## Esercizio 1: Carica il CSV in un DataFrame
 ## Task: Leggi i dati del file CSV fornito in un Pandas DataFrame e visualizza le prime 3 righe  
 ## Soluzione:
 print("***ESERCIZIO 1***")
-
-print("*****************"+"\n")    
+path = r"Data_analys\test\dati\some_music_albums.csv"
+df: pd.DataFrame = pd.read_csv(path)
+print(df.head(3))
+print("*****************"+"\n")     
  
 ### Esercizio 2: Mostra informazioni di base sul DataFrame 
 ### Task: Mostra il numero di righe, colonne e tipi di dati per ogni colonna 
 ### Soluzione:
 print("***ESERCIZIO 2***")
-
+df.info()
 print("*****************"+"\n")
  
 ### Esercizio 3: Filtra gli album per genere
 ### Task: Crea un nuovo DataFrame contenente solo gli album con "rock" nella colonna 'Genre'
 ### Soluzione:
 print("***ESERCIZIO 3***")
-
+rock_df: pd.DataFrame = df[df["Genre"].str.contains("rock", case=False, na=False)]
+print(rock_df)
 print("*****************"+"\n")
 
 ## Esercizio 4: Trova gli album pubblicati dopo il 1980
 ## Task: Filtra gli album pubblicati dopo il 1980 e visualizza solo le colonne 'Artist', 'Album' e 'Released'
 ## Soluzione:
 print("***ESERCIZIO 4***")
-
+after_1980: pd.DataFrame = df[df["Released"] > 1980][["Artist", "Album", "Released"]]
+print(after_1980)
 print("*****************"+"\n")
 
 ### Esercizio 5: Calcola la media delle valutazioni
 ### Task: Calcola la media della colonna 'Rating' per tutti gli album
 ### Soluzione:
 print("***ESERCIZIO 5***")
-
+avg: float = df["Rating"].astype("float").mean()
+print(f"Average Rating: {avg}")
 print("*****************"+"\n")
 
 ### Esercizio 6: Trova l'album più lungo e il più breve
 ### Task: Identifica l'album con la durata massima e minima nella colonna 'Length' e visualizza i suoi dettagli
 ### Soluzione:
 print("***ESERCIZIO 6***")
-
+def time_conversion(time:str)-> int:
+    return int(time.split(":")[0]) * 3600 + int(time.split(":")[1]) * 60 + int(time.split(":")[2])
+df["Length_seconds"] = df["Length"].apply(time_conversion)
+length_max = df["Length_seconds"].idxmax()
+lenght_min = df["Length_seconds"].idxmin()
+longhest = df.loc[length_max]
+shortest = df.loc[lenght_min]
+print(f"Longhest: {longhest}")
+print(f"Shortest: {shortest}")
 print("*****************"+"\n")
  
 ### NON FARE
