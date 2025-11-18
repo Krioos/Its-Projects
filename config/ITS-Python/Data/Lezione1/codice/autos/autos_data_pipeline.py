@@ -6,10 +6,11 @@ from sqlalchemy.exc import SQLAlchemyError
 class DataSourceConfig:
     """Configurazione sorgenti dati e destinazione output"""
     remote_url: str = "https://archive.ics.uci.edu/ml/machine-learning-databases/autos/imports-85.data"
-    db_uri: str = "postgresql+psycopg://postgres:postgres@postgresql:5432/auto_db"
-    csv_path: str = "../../dati/autos/auto.csv"
-    csv_clean_path: str = "../../dati/autos/auto_clean.csv"
-    output_plot: str = "../../visual/autos/plot.png"
+    # db_uri: str = "postgresql+psycopg://postgres:postgres@postgresql:5432/auto_db"
+    db_uri: str = "postgresql+psycopg://postgres:postgres@localhost:5432/auto_db"
+    csv_path: str = "Data/Lezione1/dati/autos/auto.csv"
+    csv_clean_path: str = "Data/Lezione1/dati/autos/auto_clean.csv"
+    output_plot: str = "Data/Lezione1/visual/autos/plot.png"
 
 class DataPipeline:
     def __init__(self, config: DataSourceConfig):
@@ -95,6 +96,8 @@ class DataPipeline:
         # Legge dati da database
         db_df = self.load_from_database()
         print("   -Letti dati da una tabella su db")
+         # print(db_df.dtypes)
+        # return pd.DataFrame()
         # Pulizia dati
         clean_df = self.clean_data(db_df)
         print("   -Pulizia dati completata e file pulito salvato")
@@ -103,7 +106,7 @@ class DataPipeline:
         print("   -Analisi e visualizzazione dati terminate")          
         self.data = clean_df
         return clean_df
-        
+
 if __name__ == "__main__":
     config = DataSourceConfig()
     pipeline = DataPipeline(config)
