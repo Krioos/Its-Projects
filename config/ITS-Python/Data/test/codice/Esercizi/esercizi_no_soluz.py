@@ -4,7 +4,7 @@ import pandas as pd
 ## Task: Leggi i dati del file CSV fornito in un Pandas DataFrame e visualizza le prime 3 righe  
 ## Soluzione:
 print("***ESERCIZIO 1***")
-path = r"Data_analys\test\dati\some_music_albums.csv"
+path = "Data/test/dati/some_music_albums.csv"
 df: pd.DataFrame = pd.read_csv(path)
 print(df.head(3))
 print("*****************"+"\n")     
@@ -60,7 +60,18 @@ print("*****************"+"\n")
 ### Task: Estrai e stampa tutti i generi unici nel dataset (dividendo i generi combinati come "pop, rock")
 ### Soluzione:
 print("***ESERCIZIO 7***")
+genres = (
+    df["Genre"]
+    .dropna()                    # rimuove eventuali NaN
+    .str.split(",")              # crea liste ["pop", " rock"]
+    .explode()                   # trasforma le liste in righe singole
+    .str.strip()                 # rimuove spazi extra
+    .unique()                    # prende valori unici
+)
 
+print("Generi unici trovati:")
+for g in sorted(genres):
+    print("-", g)
 print("*****************"+"\n")
 
 ### Esercizio 8: Confronta le vendite con vendite dichiarate
@@ -68,6 +79,12 @@ print("*****************"+"\n")
 ### Soluzione:
 print("***ESERCIZIO 8***")
 
+df["Sales_Difference"] = (
+    df["Claimed Sales (millions)"] 
+    - df["Music Recording Sales (millions)"]
+)
+
+print(df[["Artist", "Album", "Sales_Difference"]])
 print("*****************"+"\n")
   
 ### Esercizio 9: Trova gli album colonna sonora
@@ -75,12 +92,23 @@ print("*****************"+"\n")
 ### Soluzione:
 print("***ESERCIZIO 9***")
 
+soundtracks = df[df["Soundtrack"] == "Y"]
+
+print(soundtracks)
 print("*****************"+"\n")
 
 ### Esercizio 10: Salva i dati filtrati in un file CSV
 ### Task: Salva tutti gli album con una valutazione (Rating) ≥ 9 in un nuovo file CSV
 ### Soluzione:
 print("***ESERCIZIO 10***")
+
+# Filtra tutti gli album con Rating ≥ 9
+top_rated = df[df["Rating"].astype(float) >= 9]
+
+# Salva in un nuovo file CSV
+top_rated.to_csv("Data/test/dati/top_rated_albums.csv", index=False)
+
+print("File salvato come: top_rated_albums.csv")
 
 print("******************"+"\n")
 
@@ -97,6 +125,21 @@ print("******************"+"\n")
 ### Soluzione:  
 print("***ESERCIZIO 12***")
 
+# Se la colonna non esiste, ricreala
+df["Sales_Difference"] = (
+    df["Claimed Sales (millions)"] 
+    - df["Music Recording Sales (millions)"]
+)
+
+# Trova l'indice dell'album con la differenza maggiore
+idx_max_diff = df["Sales_Difference"].idxmax()
+
+# Estrai tutti i dettagli dell'album
+max_diff_album = df.loc[idx_max_diff]
+
+print("Album con la maggior differenza tra vendite dichiarate e registrate:")
+print(max_diff_album)
+
 print("******************"+"\n")
   
 ### Esercizio 13: Filtra gli album per generi multipli
@@ -104,6 +147,12 @@ print("******************"+"\n")
 ### Soluzione:**  
 print("***ESERCIZIO 13***")
 
+multi_genre = df[
+    df["Genre"].str.contains("rock", case=False, na=False)
+    & df["Genre"].str.contains("pop", case=False, na=False)
+]
+
+print(multi_genre)
 print("******************"+"\n")
 
 ### NON FARE    
