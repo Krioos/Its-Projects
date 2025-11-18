@@ -96,7 +96,7 @@ class DataPipeline:
         # Legge dati da database
         db_df = self.load_from_database()
         print("   -Letti dati da una tabella su db")
-         # print(db_df.dtypes)
+        # print(db_df.dtypes)
         # return pd.DataFrame()
         # Pulizia dati
         clean_df = self.clean_data(db_df)
