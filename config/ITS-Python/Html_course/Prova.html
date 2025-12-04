@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <div align = "center"><title></title></div>
-    </head>
-    <body>
-        <div align = "center"><h1></h1></div>
-        <div align = "center"><p></p></div>
-        <div align = "center"></div>
-    </body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      const urlBase = "https://jsonplaceholder.typicode.com/";
+      const divRoot = document.getElementById("root");
+      fetch(urlBase + "posts/1")
+        .then((response) => response.json())
+        .then((post) => {
+          console.log("FETCH", post);
+          divRoot.innerHTML = `<h2>${post.title}</h2><p>${post.body}</p>`;
+          const userP = fetch(urlBase + "users/" + post.userId).then(
+            (response) => response.json()
+          );
+          const commentsP = fetch(urlBase + "comments?postId=" + post.id).then(
+            (response) => response.json()
+          );
+          Promise.all([userP, commentsP]).then((res) => {
+            console.log(res);
+            // const small=document.createElement("small")
+            // small.textContent=res[0].name
+            // divRoot.appendChild(small)
+            divRoot.innerHTML += "<small>" + res[0].name + "</small>";
+            const commenti = res[1];
+
+                let itemUl=""
+            commenti.forEach((c) => {
+              itemUl += "<li>" + c.name + "</li>";
+            });
+            divRoot.innerHTML += "<ul>"+itemUl+"</ul>";
+          });
+        });
+
+      async function getPost() {
+        const response = await fetch(urlBase + "posts/1");
+        const post = await response.json();
+        console.log("ASYNC", post);
+      }
+      getPost();
+    </script>
+  </body>
 </html>
+
