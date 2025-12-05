@@ -23,7 +23,7 @@ class DataPipeline:
         """Operazioni varie di pulizia e pre-processamento dati"""
         # # # ESERCIZI
         # # Aggiungere al dataset una colonna 'Total" contenente il fatturato totale prodotto da ogni nazione in tutti i 30 anni 
-        df["Total"] = df.sum(axis=1)
+        df["Total"] = df[self.years].sum(axis=1)
         return df
 
     def visualize_plot(self, df_in: pd.DataFrame) -> None:        

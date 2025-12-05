@@ -47,7 +47,7 @@ group by p.id;
 --   al progetto con id '5'. Per ogni persona che lavora al
 --   progetto, restituire nome, cognome e numero di ore totali
 --   dedicate ad attività progettuali relative al progetto
-select p.nome, p.cognome, sum(ap.ore) as ore_totali
+select p.nome, p.cognome, sum(ap.oreDurata) as ore_totali
 from AttivitaProgetto as ap
 inner join Persona as p on p.id = ap.persona
 where ap.progetto = 5

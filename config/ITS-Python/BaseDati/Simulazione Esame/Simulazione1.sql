@@ -1,12 +1,12 @@
 --1) Elencare tutti i progetti la cui fine è successiva al 2023-12-31
-select id, nome, fine
+select *
 from Progetto
 where fine > '2023-12-31';
 
 --2) Contare il numero totale di persone per ciascuna posizione
 --   (Ricercatore, Professore Associato, Professore Ordinario).
 select posizione,
-    count(id) as totale
+    count(*) as totale --il count * in questo caso conta solo sui gruppo creati da group by
 from Persona
 group by posizione;
 
@@ -31,10 +31,9 @@ where posizione = 'Professore Ordinario';
 --   nelle attività del progetto con id 4, ordinate in ordine
 --   decrescente. Per ogni attività, restituire l’id, il tipo e il
 --   numero di ore.
-select id, tipo, sum(oreDurata) as totale_ore 
+select id, tipo, oreDurata 
 from AttivitaProgetto
 where progetto = 4 and persona = 1
-group by id, tipo
 order by totale_ore desc;
 
 --7) Quanti sono i giorni di assenza per tipo e per persona. Per
@@ -43,7 +42,8 @@ order by totale_ore desc;
 select p.nome, p.cognome, a.tipo, count(a.giorno) as giorni_totali
 from Assenza as a
 inner join persona as p on a.persona = p.id
-group by p.id, p.nome, p.cognome, a.tipo;
+group by p.id, p.nome, p.cognome, a.tipo
+order by p.nome, p.cognome;
 
 --8) Restituire tutti i “Professori Ordinari” che hanno lo
 --   stipendio massimo. Per ognuno, restituire id, nome e
@@ -60,7 +60,7 @@ where posizione = 'Professore Ordinario'
 --9) Restituire la somma totale delle ore relative alle attività
 --   progettuali svolte dalla persona con id = 3 e con durata
 --   minore o uguale a 3 ore.
-select sum(oreDurata) as totale_ore
+select coalesce(sum(oreDurata), 0) as totale_ore
 from AttivitaProgetto
 where persona = 3 and oreDurata <= 3;
 
